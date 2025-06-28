@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default ({ postId }) => {
   const [comments, setComments] = useState([]);
   const fetchData = async () => {
