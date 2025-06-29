@@ -24,13 +24,14 @@ app.post("/posts", async (req, res) => {
   };
 
   // adding the event-bus
-  await axios.post("http:/localhost:4005/events", {
-    type: "postCreated",
-    data: {
-      id,
-      title,
-    },
-  });
+  try {
+    await axios.post("http://localhost:4005/events", {
+      type: "postCreated",
+      data: { id, title },
+    });
+  } catch (err) {
+    console.error("Failed to emit event to event bus:", err.message);
+  }
 
   res.status(201).send(posts[id]);
 });
